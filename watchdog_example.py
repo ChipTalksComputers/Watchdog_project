@@ -4,6 +4,7 @@ import watchdog.events
 import watchdog.observers
 import shutil
 
+#The handler class
 class Handler(watchdog.events.PatternMatchingEventHandler):
     def __init__(self):
         watchdog.events.PatternMatchingEventHandler.__init__(self, patterns=['*.txt', '*.png', '*.jpg'], ignore_patterns = None,
@@ -12,9 +13,9 @@ class Handler(watchdog.events.PatternMatchingEventHandler):
     def on_created(self, event):
         print(f"File was created at {event.src_path}")
         if event.src_path.endswith('.txt'): 
-            shutil.move(event.src_path, r'C:\Users\win10\Desktop\Text_Documents')
+            shutil.move(event.src_path, r'C:\Users\win10\Desktop\Text_Documents')           #You may have to chsnge the path
         elif event.src_path.endswith('.png') or event.src_path.endswith('.jpg'): 
-            shutil.move(event.src_path, r'C:\Users\win10\Desktop\Image_docs')
+            shutil.move(event.src_path, r'C:\Users\win10\Desktop\Image_docs')               #You may have to change the path
     def on_deleted(self, event):
         print(f"File was deleted at {event.src_path}")
 
